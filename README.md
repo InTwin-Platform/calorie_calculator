@@ -12,9 +12,9 @@ Internal package for calculating daily caloric needs.
 - **`calculate_daily_caloric_needs()`** - Target calories for weight goal (lose/gain/maintain)
 
 ## Installation
-
+Generate a personal access token (PAT) with repo access from GitHub settings, then run:
 ```bash
-pip install git+https://github.com/InTwin-Platform/calorie_calculator.git
+pip install git+https://YOUR_TOKEN@github.com/InTwin-Platform/calorie_calculator.git
 ```
 
 ## Usage
