@@ -1,7 +1,7 @@
 from setuptools import setup
 
 setup(
-    name="caloric-calculator",
+    name="caloric_calculator",
     version="1.0.0",
     py_modules=["caloric_calculator"],
     author="Intwin",
