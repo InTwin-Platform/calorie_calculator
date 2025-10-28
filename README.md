@@ -13,7 +13,7 @@ Internal package for calculating daily caloric needs.
 
 ## Installation
 ```bash
-pip install git+https://github.com/InTwin-Platform/calorie_calculator.git@v1.0.1#egg=caloric-calculator
+pip install git+https://github.com/InTwin-Platform/calorie_calculator.git@v1.0.1#egg=calorie-calculator
 ```
 
 ## Usage
