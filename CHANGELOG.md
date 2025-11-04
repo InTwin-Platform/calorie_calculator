@@ -102,7 +102,7 @@ All formulas have been updated to match medical and nutritional science standard
 1. **Mifflin-St Jeor Equation** for BMR (unchanged but now uses correct weight)
 2. **Hamwi Formula** for ideal weight (inches-based)
 3. **Standard BMI ranges** for weight categorization
-4. **Energy balance principles** (7700 kcal ≈ 1 kg body weight, rounded to 7500 for practical use)
+4. **Caloric adjustments** as specified in client document (250 kcal per 0.25 kg weekly change)
 
 #### Backward Compatibility
 
