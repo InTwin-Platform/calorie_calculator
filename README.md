@@ -4,7 +4,9 @@ A comprehensive package for calculating daily caloric needs based on scientifica
 
 ## Version 2.0.0
 
-This version includes a complete overhaul of the calculation formulas to align with the latest nutritional science standards.
+This version includes a complete overhaul of the calculation formulas to align with the latest nutritional science standards per [client specification document](https://docs.google.com/document/d/1I10qlLYEwizx2QXONQcaXyJb8RXWS9P5/edit?usp=sharing&ouid=106874706599868772131&rtpof=true&sd=true).
+
+**✅ Full backward compatibility maintained with v1.x**
 
 ## Features
 

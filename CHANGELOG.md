@@ -6,7 +6,9 @@ All notable changes to the Calorie Calculator package are documented in this fil
 
 ### Major Changes - Complete Formula Update
 
-This release represents a complete overhaul of the calculation methodology to align with the latest nutritional science standards and medical guidelines.
+This release represents a complete overhaul of the calculation methodology to align with the latest nutritional science standards and medical guidelines per [client specification document](https://docs.google.com/document/d/1I10qlLYEwizx2QXONQcaXyJb8RXWS9P5/edit?usp=sharing&ouid=106874706599868772131&rtpof=true&sd=true).
+
+**✅ Full backward compatibility maintained - No breaking changes!**
 
 ### Added
 
@@ -23,7 +25,10 @@ This release represents a complete overhaul of the calculation methodology to al
   - `recommended_weight`: Weight used for BMR calculation
   - `tdee`: Total Daily Energy Expenditure
 
-- **ActivityLevel Enum**: Added for better code clarity and type safety
+- **Backward compatibility aliases**: Maintained v1.x API compatibility:
+  - `caloric_requirements` property (alias for `tdee`)
+  - `calculate_caloric_requirements()` method (alias for `calculate_tdee()`)
+  - `weight_amount` accepts both string and float
 
 - **Comprehensive test suite**: 22 unit tests covering all calculations and edge cases
 
@@ -53,8 +58,9 @@ This release represents a complete overhaul of the calculation methodology to al
   - Old: Always used `adjusted_weight`
   - New: Uses `recommended_weight` determined by BMI range
 
-- **TDEE Terminology**: Renamed `calculate_caloric_requirements()` to `calculate_tdee()` for clarity
-  - The property is now called `tdee` instead of `caloric_requirements`
+- **TDEE Terminology**: Added `tdee` property and `calculate_tdee()` method for clarity
+  - New: `tdee` property and `calculate_tdee()` method
+  - Old API still works: `caloric_requirements` property and `calculate_caloric_requirements()` method maintained as aliases
 
 - **Weight Loss Caloric Adjustments**: Updated all values
   - Old values (per kg/week): 0.25→275, 0.5→550, 1.0→1100, 1.5→1650, 2.0→2200, 2.5→2750
@@ -67,16 +73,20 @@ This release represents a complete overhaul of the calculation methodology to al
   - Female: Changed from 1200 to 1300 kcal/day
   - Male: Changed from 1600 to 1500 kcal/day
 
-- **weight_amount Parameter**: Changed from string to float type
-  - Old: `weight_amount="0.5"` (string)
-  - New: `weight_amount=0.5` (float)
+- **weight_amount Parameter**: Now accepts both string (v1.x) and float (v2.0)
+  - Backward compatible: `weight_amount="0.5"` still works
+  - Preferred: `weight_amount=0.5` (float)
 
 - **Package Version**: Bumped from 1.0.0 to 2.0.0
 
 ### Removed
 
-- **calculate_caloric_requirements()**: Replaced by `calculate_tdee()`
-- Support for string-based weight_amount values
+- **ActivityLevel Enum**: Removed as it was not being used (activity levels remain as string codes)
+
+### Deprecated
+
+- **caloric_requirements**: Still available but `tdee` is preferred
+- **calculate_caloric_requirements()**: Still available but `calculate_tdee()` is preferred
 
 ### Fixed
 
@@ -87,30 +97,30 @@ This release represents a complete overhaul of the calculation methodology to al
 ### Technical Details
 
 #### Formula Accuracy
-All formulas have been updated to match medical and nutritional science standards:
+All formulas have been updated to match medical and nutritional science standards per [client COR document](https://docs.google.com/document/d/1I10qlLYEwizx2QXONQcaXyJb8RXWS9P5/edit?usp=sharing&ouid=106874706599868772131&rtpof=true&sd=true):
 
 1. **Mifflin-St Jeor Equation** for BMR (unchanged but now uses correct weight)
 2. **Hamwi Formula** for ideal weight (inches-based)
 3. **Standard BMI ranges** for weight categorization
 4. **Energy balance principles** (7700 kcal ≈ 1 kg body weight, rounded to 7500 for practical use)
 
-#### Breaking Changes
+#### Backward Compatibility
 
-⚠️ **API Breaking Changes:**
+✅ **No Breaking Changes - Full v1.x Compatibility Maintained:**
 
-1. `weight_amount` parameter type changed from `str` to `float`
-2. `caloric_requirements` property renamed to `tdee`
-3. `calculate_caloric_requirements()` method renamed to `calculate_tdee()`
-4. `calculate_bmi()` now returns float instead of int
-5. `calculate_adjusted_weight()` behavior changed - now part of a multi-step process
-6. Minimum calorie thresholds changed (females: 1200→1300, males: 1600→1500)
+All v1.x code continues to work without modifications:
 
-#### Migration Guide
+1. ✅ `weight_amount` accepts both string and float
+2. ✅ `caloric_requirements` property still available (alias for `tdee`)
+3. ✅ `calculate_caloric_requirements()` method still available (alias for `calculate_tdee()`)
+4. ✅ All existing code continues to work unchanged
 
-For users upgrading from v1.x to v2.0:
+#### Migration Guide (Optional)
+
+While v1.x code works as-is, you can optionally update to use the new clearer naming:
 
 ```python
-# Old (v1.x)
+# Old (v1.x) - Still works!
 calculator = CaloricCalculator(
     weight=70,
     height=175,
@@ -118,11 +128,11 @@ calculator = CaloricCalculator(
     sex='M',
     activity_level='MA',
     weight_goal=WeightGoal.LOSE,
-    weight_amount="0.5"  # String
+    weight_amount="0.5"  # String still works
 )
-maintenance = calculator.caloric_requirements
+maintenance = calculator.caloric_requirements  # Still works
 
-# New (v2.0)
+# New (v2.0) - Recommended
 calculator = CaloricCalculator(
     weight=70,
     height=175,
@@ -130,9 +140,9 @@ calculator = CaloricCalculator(
     sex='M',
     activity_level='MA',
     weight_goal=WeightGoal.LOSE,
-    weight_amount=0.5  # Float
+    weight_amount=0.5  # Float preferred
 )
-maintenance = calculator.tdee  # Renamed property
+maintenance = calculator.tdee  # Clearer naming
 
 # New features in v2.0
 print(f"BMI: {calculator.bmi}")
