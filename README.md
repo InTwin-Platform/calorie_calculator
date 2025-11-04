@@ -192,13 +192,15 @@ print(f"Daily calories for weight gain: {calculator.daily_caloric_needs} kcal/da
 - `WeightGoal.LOSE`: Lose weight
 - `WeightGoal.GAIN`: Gain weight
 
-### ActivityLevel Enum
+### Activity Levels
 
-- `ActivityLevel.SEDENTARY`: Little or no exercise (S)
-- `ActivityLevel.LIGHTLY_ACTIVE`: Light exercise 1-3 days/week (LA)
-- `ActivityLevel.MODERATELY_ACTIVE`: Moderate exercise 3-5 days/week (MA)
-- `ActivityLevel.VERY_ACTIVE`: Hard exercise 6-7 days/week (VA)
-- `ActivityLevel.SUPER_ACTIVE`: Very hard exercise, physical job, or training twice/day (SA)
+Activity levels are specified as string codes:
+
+- `'S'` (Sedentary): Little or no exercise
+- `'LA'` (Lightly Active): Light exercise 1-3 days/week
+- `'MA'` (Moderately Active): Moderate exercise 3-5 days/week
+- `'VA'` (Very Active): Hard exercise 6-7 days/week
+- `'SA'` (Super Active): Very hard exercise, physical job, or training twice/day
 
 ## Testing
 
@@ -219,16 +221,19 @@ python3 example_usage.py
 ## Version History
 
 ### v2.0.0 (Current)
-- Updated BMI calculation with proper decimal precision
-- Implemented new ideal weight formula based on height in inches
+- Updated BMI calculation with proper decimal precision (returns float with 2 decimals)
+- Implemented new ideal weight formula based on height in inches (Hamwi formula)
 - Updated adjusted weight formula (0.25 factor instead of 0.4)
 - Implemented BMI-based weight selection for BMR calculation
-- Updated BMR calculation to use recommended weight
+- Updated BMR calculation to use recommended weight based on BMI
 - Implemented TDEE calculation (BMR × Activity Factor)
-- Updated caloric adjustments for weight loss and gain
+- Updated caloric adjustments to 250 kcal per 0.25 kg/week
 - Updated minimum calorie thresholds (1300 for females, 1500 for males)
-- Added comprehensive test coverage
-- Added ActivityLevel enum for better code clarity
+- Added comprehensive test coverage (22 tests)
+- Added backward compatibility aliases for v1.x API
+
+### v1.0.1
+- Updated installation instructions
 
 ### v1.0.0
 - Initial release with basic calorie calculations
