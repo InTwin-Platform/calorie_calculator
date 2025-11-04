@@ -173,6 +173,7 @@ print(f"Daily calories for weight gain: {calculator.daily_caloric_needs} kcal/da
 - `bmr` (int): Basal Metabolic Rate in kcal/day
 - `activity_factor` (float): Activity level multiplier
 - `tdee` (int): Total Daily Energy Expenditure in kcal/day
+- `caloric_requirements` (int): **[v1.x compatibility]** Alias for `tdee` - maintained for backward compatibility
 - `daily_caloric_needs` (int): Target daily caloric intake in kcal/day
 
 #### Methods
@@ -184,6 +185,7 @@ print(f"Daily calories for weight gain: {calculator.daily_caloric_needs} kcal/da
 - `calculate_bmr()`: Calculate Basal Metabolic Rate
 - `get_activity_factor()`: Get activity factor from activity level
 - `calculate_tdee()`: Calculate Total Daily Energy Expenditure
+- `calculate_caloric_requirements()`: **[v1.x compatibility]** Alias for `calculate_tdee()` - maintained for backward compatibility
 - `calculate_daily_caloric_needs()`: Calculate daily caloric needs based on weight goal
 
 ### WeightGoal Enum
