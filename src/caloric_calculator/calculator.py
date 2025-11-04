@@ -34,6 +34,9 @@ class CaloricCalculator:
         self.activity_factor = self.get_activity_factor()
         self.tdee = self.calculate_tdee()
         self.daily_caloric_needs = self.calculate_daily_caloric_needs()
+        
+        # Backward compatibility alias
+        self.caloric_requirements = self.tdee
 
     def calculate_bmi(self):
         """
@@ -156,6 +159,18 @@ class CaloricCalculator:
         """
         tdee = self.bmr * self.activity_factor
         return round(tdee)
+    
+    def calculate_caloric_requirements(self):
+        """
+        Backward compatibility alias for calculate_tdee().
+        
+        .. deprecated:: 2.0.0
+           Use :func:`calculate_tdee` instead.
+        
+        Returns:
+            int: TDEE in kcal/day, rounded to nearest integer
+        """
+        return self.calculate_tdee()
 
     def calculate_daily_caloric_needs(self):
         """
